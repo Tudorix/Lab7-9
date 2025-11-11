@@ -1,11 +1,20 @@
 class Console:
     
     def __init__(self, serviceStudenti, serviceDiscipline, serviceNote):
+        """
+            Constructorul clasei Console
+            @param serviceStudenti - ServiceStudent
+            @param serviceDiscipline - ServiceDiscipline
+            @param serviceNote - ServiceNote
+        """
         self.serviceStudenti = serviceStudenti
         self.serviceDiscipline = serviceDiscipline
         self.serviceNote = serviceNote
     
     def citeste_student(self):
+        """
+            Functie care citeste datele pentru obiectul student
+        """
         id = None
         nume = ""
         
@@ -22,6 +31,9 @@ class Console:
         return (id , nume)
     
     def citeste_disciplina(self):
+        """
+            Functie care citeste datele pentru obiectul disciplina
+        """
         id = None
         nume = ""
         profesor = ""

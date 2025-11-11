@@ -1,9 +1,15 @@
 class TestDiscipline:
     
     def __init__(self, serviceDiscipline):
+        """ 
+            Functie de initiere pentru modulul de teste alocat Disciplina
+        """
         self.serviceDiscipline = serviceDiscipline
         
     def test_adauga_disciplina(self):
+        """ 
+            Functie de test pentru adauga_disciplina
+        """
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan)]"
@@ -11,6 +17,9 @@ class TestDiscipline:
         assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan), (24 , Info , Daniela)]"
         
     def test_update_disciplina(self):
+        """ 
+            Functie de test pentru update_disciplina
+        """
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
@@ -18,6 +27,9 @@ class TestDiscipline:
         assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan), (36 , FP , Gabi)]"
         
     def test_sterge_disciplina(self):
+        """ 
+            Functie de test pentru stergere_disciplina
+        """
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
@@ -25,6 +37,9 @@ class TestDiscipline:
         assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan)]"
         
     def test_all(self):
+        """ 
+            Functie de test pentru toate functiile de test
+        """
         self.test_adauga_disciplina()
         self.test_update_disciplina()
         self.test_sterge_disciplina()

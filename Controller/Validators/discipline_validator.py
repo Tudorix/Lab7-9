@@ -1,6 +1,10 @@
 class ValidatorDiscipline:
     
     def validareDiscilina(self, Disciplina):
+        """ 
+            Functie de validare pentru Disciplina
+            @param Disciplina - Disciplina
+        """
         erori = []
         
         if Disciplina.getID() < 0:
@@ -16,6 +20,10 @@ class ValidatorDiscipline:
             raise erori
         
     def validareID(self, ID):
+        """ 
+            Functie de validare pentru ID
+            @param ID - int
+        """
         try:
             ID = int(ID)
         except:

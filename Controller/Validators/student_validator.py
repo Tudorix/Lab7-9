@@ -1,6 +1,10 @@
 class ValidatorStudent:
     
     def validareStudent(self, Student):
+        """ 
+            Functie de validare pentru Student
+            @param Student - Student
+        """
         erori = []
         
         if Student.getID() < 0:
@@ -13,6 +17,10 @@ class ValidatorStudent:
             raise erori
         
     def validareID(self, ID):
+        """ 
+            Functie de validare pentru ID
+            @param ID - int
+        """
         try:
             ID = int(ID)
         except:
