@@ -13,6 +13,15 @@ class Disciplina:
     
     def getProfesor(self):
         return self.Profesor
+    
+    def setID(self, id):
+        self.ID = id
+    
+    def setNume(self, nume):
+        self.Nume = nume
+    
+    def setProfesor(self, profesor):
+        self.Profesor = profesor
         
     def __str__(self):
         return f"({self.ID} , {self.Nume} , {self.Profesor})"

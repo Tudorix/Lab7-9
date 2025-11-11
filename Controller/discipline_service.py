@@ -26,3 +26,19 @@ class ServiceDiscipline:
             return
 
         self.__repoDisciplina.sterge_disciplina(ID)
+        
+    def update_disciplina(self,idDisciplina , newId , Nume, Profesor):
+        
+        try:
+            self.__validatorDisciplina.validareID(newId)
+        except:
+            print("New ID is invalid")
+            return
+        
+        try:
+            self.__validatorDisciplina.validareID(idDisciplina)
+        except:
+            print("Existing ID is invalid")
+            return
+        
+        self.__repoDisciplina.update_disciplina(idDisciplina, newId , Nume, Profesor)

@@ -8,7 +8,7 @@ class Console:
     def citeste_student(self):
         id = None
         nume = ""
-         
+        
         while True:
             try:
                 id = int(input("Enter the ID\n>>>")) 
@@ -25,7 +25,7 @@ class Console:
         id = None
         nume = ""
         profesor = ""
-         
+        
         while True:
             try:
                 id = int(input("Enter the ID\n>>>")) 
@@ -53,11 +53,11 @@ class Console:
                 running = False
             elif args[0] == "help":
                 print("Commands list:\n" + 
-                      "exit\n" + 
-                      "add student/disciplina\n" + 
-                      "update student/disciplina\n" + 
-                      "delete student/disciplina\n" + 
-                      "print student/disciplina")
+                    "exit\n" + 
+                    "add student/disciplina\n" + 
+                    "update student/disciplina\n" + 
+                    "delete student/disciplina\n" + 
+                    "print student/disciplina")
             elif args[0] == "print":
                 if len(args) <= 1:
                     print("You forgot to specify the type(student/disciplina)")
@@ -108,3 +108,11 @@ class Console:
                     else:
                         (ID , nume) = self.citeste_student()
                         self.serviceStudenti.update_student(args[2],ID, nume)
+                        
+                elif args[1] == "disciplina":
+                    
+                    if len(args) <= 2:
+                        print("You forgot to specify the disciplina ID")
+                    else:
+                        (ID , nume, profesor) = self.citeste_disciplina()
+                        self.serviceDiscipline.update_disciplina(args[2],ID, nume, profesor)
