@@ -6,6 +6,9 @@ class Student:
     def __str__(self):
         return f"({self.ID} , {self.Nume})"
     
+    def __repr__(self):
+        return str(self)
+    
     def getNume(self):
         return self.Nume
     

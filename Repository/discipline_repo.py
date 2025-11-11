@@ -1,6 +1,9 @@
 class DisciplineRepo:
     def __init__(self):
         self.lista_discipline = []
+        
+    def rst(self):
+        self.lista_discipline = []
 
     def exista_ID(self, ID):
         for e in self.lista_discipline:

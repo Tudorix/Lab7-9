@@ -4,6 +4,9 @@ class ServiceStudent:
     def __init__(self, ValidatorStudent, RepoStudent):
         self.__validatorStudent = ValidatorStudent
         self.__repoStudent = RepoStudent
+        
+    def reset_list(self):
+        self.__repoStudent.rst()
     
     def adauga_student(self , idStudent, Nume):
         student = Student(idStudent , Nume)

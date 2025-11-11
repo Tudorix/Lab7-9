@@ -2,6 +2,9 @@ class StudentRepo:
     def __init__(self):
         self.lista_studenti = []
         
+    def rst(self):
+        self.lista_studenti = []
+        
     def exista_ID(self, ID):
         for e in self.lista_studenti:
             if ID == e.getID():

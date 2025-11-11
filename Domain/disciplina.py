@@ -25,3 +25,6 @@ class Disciplina:
         
     def __str__(self):
         return f"({self.ID} , {self.Nume} , {self.Profesor})"
+    
+    def __repr__(self):
+        return str(self)

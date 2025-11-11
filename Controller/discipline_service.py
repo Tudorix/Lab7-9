@@ -5,6 +5,9 @@ class ServiceDiscipline:
         self.__validatorDisciplina = ValidatorDisciplina
         self.__repoDisciplina = RepoDisciplina
         
+    def reset_list(self):
+        self.__repoDisciplina.rst()
+        
     def get_discipline(self):
         return self.__repoDisciplina.lista_discipline
 
