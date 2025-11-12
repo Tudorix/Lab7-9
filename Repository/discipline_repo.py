@@ -3,20 +3,23 @@ class DisciplineRepo:
         """
             Constructorul clasei DisciplineRepo
         """
-        self.lista_discipline = []
+        self.__lista_discipline = []
+        
+    def getList(self):
+        return self.__lista_discipline
         
     def rst(self):
         """
             Functie care reseteaza lista de discipline
         """
-        self.lista_discipline = []
+        self.__lista_discipline = []
 
     def exista_ID(self, ID):
         """
             Functie care verifica unicitatea ID-ului specificat
             @param ID - int
         """
-        for e in self.lista_discipline:
+        for e in self.__lista_discipline:
             if ID == e.getID():
                 return True
         return False
@@ -29,16 +32,16 @@ class DisciplineRepo:
         if self.exista_ID(disciplina.getID()):
             print("There is another Discipline with this ID")
         else:
-            self.lista_discipline.append(disciplina)
+            self.__lista_discipline.append(disciplina)
         
     def sterge_disciplina(self, ID):
         """
             Functie care sterge disciplina din lista de discipline
             @param ID - string
         """
-        for i in range(len(self.lista_discipline)):
-            if self.lista_discipline[i].getID() == int(ID):
-                del self.lista_discipline[i]
+        for i in range(len(self.__lista_discipline)):
+            if self.__lista_discipline[i].getID() == int(ID):
+                del self.__lista_discipline[i]
                 print("Disciplina has been deleted successfully!")
                 return
         print("There is no disciplina with that ID")
@@ -54,11 +57,11 @@ class DisciplineRepo:
         if self.exista_ID(newID) and int(ID) != newID:
             print("There is another Discipline with this ID")
         else:
-            for i in range(len(self.lista_discipline)):
-                if self.lista_discipline[i].getID() == int(ID):
-                    self.lista_discipline[i].setID(newID)
-                    self.lista_discipline[i].setNume(Nume)
-                    self.lista_discipline[i].setProfesor(Profesor)
+            for i in range(len(self.__lista_discipline)):
+                if self.__lista_discipline[i].getID() == int(ID):
+                    self.__lista_discipline[i].setID(newID)
+                    self.__lista_discipline[i].setNume(Nume)
+                    self.__lista_discipline[i].setProfesor(Profesor)
                     print("Disciplina has been updated successfully!")
                     return
                 

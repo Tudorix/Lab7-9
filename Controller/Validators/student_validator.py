@@ -9,6 +9,9 @@ class ValidatorStudent:
         
         if Student.getID() < 0:
             erori.append("IdError")
+            
+        if Student.getVarsta() < 0:
+            erori.append("AgeError")
 
         if Student.getNume() == "":
             erori.append("NumeError")

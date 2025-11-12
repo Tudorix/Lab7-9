@@ -20,7 +20,7 @@ class ServiceDiscipline:
         """ 
             Functie care returneza lista curenta de discipline
         """
-        return self.__repoDisciplina.lista_discipline
+        return self.__repoDisciplina.getList()
 
     def adauga_disciplina(self , ID, Nume, Profesor):
         """

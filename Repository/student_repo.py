@@ -3,20 +3,23 @@ class StudentRepo:
         """
             Constructorul clasei StudentRepo
         """
-        self.lista_studenti = []
+        self.__lista_studenti = []
+        
+    def getList(self):
+        return self.__lista_studenti
         
     def rst(self):
         """
             Functie care reseteaza lista de studenti
         """
-        self.lista_studenti = []
+        self.__lista_studenti = []
         
     def exista_ID(self, ID):
         """
-            Functie care verifica unicitatea ID-ului specificat
+            Functie care verifica daca ID exista in lista
             @param ID - int
         """
-        for e in self.lista_studenti:
+        for e in self.__lista_studenti:
             if ID == e.getID():
                 return True
         return False
@@ -29,35 +32,37 @@ class StudentRepo:
         if self.exista_ID(student.getID()):
             print("There is nother student with that ID")
         else:
-            self.lista_studenti.append(student)
+            self.__lista_studenti.append(student)
             
     def sterge_student(self , ID):
         """
             Functie care sterge student din lista de studenti
             @param ID - string
         """
-        for i in range(len(self.lista_studenti)):
-            if self.lista_studenti[i].getID() == int(ID):
-                del self.lista_studenti[i]
+        for i in range(len(self.__lista_studenti)):
+            if self.__lista_studenti[i].getID() == int(ID):
+                del self.__lista_studenti[i]
                 print("Student deleted successfully")
                 return
                 
         print("There is no student with that ID")
         
-    def update_student(self , ID, newId, Nume):
+    def update_student(self , ID, newId, Nume, Varsta):
         """
             Functie care modifica un student din lista de studenti
             @param ID - string
             @param newId - int
+            @param Varsta - int
             @param Nume - string
         """
         if self.exista_ID(newId) and int(ID) != newId:
             print("There is nother student with that ID")
         else:
-            for i in range(len(self.lista_studenti)):
-                if self.lista_studenti[i].getID() == int(ID):
-                    self.lista_studenti[i].setID(newId)
-                    self.lista_studenti[i].setNume(Nume)
+            for i in range(len(self.__lista_studenti)):
+                if self.__lista_studenti[i].getID() == int(ID):
+                    self.__lista_studenti[i].setID(newId)
+                    self.__lista_studenti[i].setNume(Nume)
+                    self.__lista_studenti[i].setVarsta(Varsta)
                     print("Student updated successfully")
                     return
                     

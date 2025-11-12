@@ -16,13 +16,14 @@ class ServiceStudent:
         """
         self.__repoStudent.rst()
     
-    def adauga_student(self , idStudent, Nume):
+    def adauga_student(self , idStudent, Nume, Varsta):
         """
             Functie care adauga student in lista de studenti
             @param idStudent - int
             @param Nume - string
+            @param Varsta - int
         """
-        student = Student(idStudent , Nume)
+        student = Student(idStudent , Nume, Varsta)
         try:
             self.__validatorStudent.validareStudent(student)
         except:
@@ -44,7 +45,7 @@ class ServiceStudent:
         
         self.__repoStudent.sterge_student(idStudent)
         
-    def update_student(self,idStudent , newId , Nume):
+    def update_student(self,idStudent , newId , Nume, Varsta):
         """
             Functie care modifica student din lista de studenti
             @param ID - string
@@ -63,10 +64,10 @@ class ServiceStudent:
             print("Existing ID is invalid")
             return
         
-        self.__repoStudent.update_student(idStudent, newId , Nume)
+        self.__repoStudent.update_student(idStudent, newId , Nume, Varsta)
         
     def get_studenti(self):
         """ 
             Functie care returneza lista curenta de studenti
         """
-        return self.__repoStudent.lista_studenti
+        return self.__repoStudent.getList()

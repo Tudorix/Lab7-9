@@ -12,9 +12,13 @@ class TestDiscipline:
         """
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
-        assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan)]"
+        assert self.serviceDiscipline.get_discipline()[0].getID() == 12
+        assert self.serviceDiscipline.get_discipline()[0].getNume() == "Mate"
+        assert self.serviceDiscipline.get_discipline()[0].getProfesor() == "Stefan"
         self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
-        assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan), (24 , Info , Daniela)]"
+        assert self.serviceDiscipline.get_discipline()[1].getID() == 24
+        assert self.serviceDiscipline.get_discipline()[1].getNume() == "Info"
+        assert self.serviceDiscipline.get_discipline()[1].getProfesor() == "Daniela"
         
     def test_update_disciplina(self):
         """ 
@@ -24,7 +28,9 @@ class TestDiscipline:
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
         self.serviceDiscipline.update_disciplina(24,36, "FP", "Gabi")
-        assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan), (36 , FP , Gabi)]"
+        assert self.serviceDiscipline.get_discipline()[1].getID() == 36
+        assert self.serviceDiscipline.get_discipline()[1].getNume() == "FP"
+        assert self.serviceDiscipline.get_discipline()[1].getProfesor() == "Gabi"
         
     def test_sterge_disciplina(self):
         """ 
@@ -33,8 +39,10 @@ class TestDiscipline:
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
-        self.serviceDiscipline.sterge_disciplina("24")
-        assert str(self.serviceDiscipline.get_discipline()) == "[(12 , Mate , Stefan)]"
+        self.serviceDiscipline.sterge_disciplina("12")
+        assert self.serviceDiscipline.get_discipline()[0].getID() == 24
+        assert self.serviceDiscipline.get_discipline()[0].getNume() == "Info"
+        assert self.serviceDiscipline.get_discipline()[0].getProfesor() == "Daniela"
         
     def test_all(self):
         """ 

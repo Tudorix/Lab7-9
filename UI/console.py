@@ -17,6 +17,7 @@ class Console:
         """
         id = None
         nume = ""
+        varsta = None
         
         while True:
             try:
@@ -24,11 +25,18 @@ class Console:
                 break
             except ValueError:
                 print("ID invalid")
+                
+        while True:
+            try:
+                varsta = int(input("Enter the Age\n>>>")) 
+                break
+            except ValueError:
+                print("ID invalid")
         
         while nume == "":
             nume = input("Enter the Name\n>>>")
         
-        return (id , nume)
+        return (id , nume, varsta)
     
     def citeste_disciplina(self):
         """
@@ -88,8 +96,8 @@ class Console:
                 if len(args) <= 1:
                     print("You forgot to specify the type(student/disciplina)")
                 elif args[1] == "student":
-                    (ID , nume) = self.citeste_student()
-                    self.serviceStudenti.adauga_student(ID , nume)
+                    (ID , nume, varsta) = self.citeste_student()
+                    self.serviceStudenti.adauga_student(ID , nume, varsta)
                 elif args[1] == "disciplina":
                     (ID , nume, profesor) = self.citeste_disciplina()
                     self.serviceDiscipline.adauga_disciplina(ID , nume, profesor)
@@ -118,8 +126,8 @@ class Console:
                     if len(args) <= 2:
                         print("You forgot to specify the student ID")
                     else:
-                        (ID , nume) = self.citeste_student()
-                        self.serviceStudenti.update_student(args[2],ID, nume)
+                        (ID , nume, varsta) = self.citeste_student()
+                        self.serviceStudenti.update_student(args[2],ID, nume, varsta)
                         
                 elif args[1] == "disciplina":
                     
@@ -128,3 +136,6 @@ class Console:
                     else:
                         (ID , nume, profesor) = self.citeste_disciplina()
                         self.serviceDiscipline.update_disciplina(args[2],ID, nume, profesor)
+                        
+            else:
+                print("Invalid command")

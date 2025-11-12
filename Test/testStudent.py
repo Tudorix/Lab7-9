@@ -11,30 +11,38 @@ class TestStudent:
             Functie de test pentru adauga_student
         """
         self.serviceStudenti.reset_list()
-        self.serviceStudenti.adauga_student(48 , "Tudor")
-        assert str(self.serviceStudenti.get_studenti()) == "[(48 , Tudor)]"
-        self.serviceStudenti.adauga_student(56 , "Andrei")
-        assert str(self.serviceStudenti.get_studenti()) == "[(48 , Tudor), (56 , Andrei)]"
+        self.serviceStudenti.adauga_student(48 , "Tudor", 19)
+        assert self.serviceStudenti.get_studenti()[0].getNume() == "Tudor"
+        assert self.serviceStudenti.get_studenti()[0].getID() == 48
+        assert self.serviceStudenti.get_studenti()[0].getVarsta() == 19
+        self.serviceStudenti.adauga_student(56 , "Andrei", 23)
+        assert self.serviceStudenti.get_studenti()[1].getNume() == "Andrei"
+        assert self.serviceStudenti.get_studenti()[1].getID() == 56
+        assert self.serviceStudenti.get_studenti()[1].getVarsta() == 23
         
     def test_update_student(self):
         """ 
             Functie de test pentru update_student
         """
         self.serviceStudenti.reset_list()
-        self.serviceStudenti.adauga_student(48 , "Tudor")
-        self.serviceStudenti.adauga_student(56 , "Andrei")
-        self.serviceStudenti.update_student("48", 36, "Stefan")
-        assert str(self.serviceStudenti.get_studenti()) == "[(36 , Stefan), (56 , Andrei)]"
+        self.serviceStudenti.adauga_student(48 , "Tudor", 19)
+        self.serviceStudenti.adauga_student(56 , "Andrei", 23)
+        self.serviceStudenti.update_student("56", 36, "Stefan", 18)
+        assert self.serviceStudenti.get_studenti()[1].getNume() == "Stefan"
+        assert self.serviceStudenti.get_studenti()[1].getID() == 36
+        assert self.serviceStudenti.get_studenti()[1].getVarsta() == 18
         
     def test_stergere_student(self):
         """ 
             Functie de test pentru stergere_student
         """
         self.serviceStudenti.reset_list()
-        self.serviceStudenti.adauga_student(48 , "Tudor")
-        self.serviceStudenti.adauga_student(56 , "Andrei")
+        self.serviceStudenti.adauga_student(48 , "Tudor", 19)
+        self.serviceStudenti.adauga_student(56 , "Andrei", 23)
         self.serviceStudenti.sterge_student(48)
-        assert str(self.serviceStudenti.get_studenti()) == "[(56 , Andrei)]"
+        assert self.serviceStudenti.get_studenti()[0].getNume() == "Andrei"
+        assert self.serviceStudenti.get_studenti()[0].getID() == 56
+        assert self.serviceStudenti.get_studenti()[0].getVarsta() == 23
 
     def test_all(self):
         """ 
