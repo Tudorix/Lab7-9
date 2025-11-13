@@ -59,10 +59,11 @@ class ServiceDiscipline:
             @param Nume - string
             @param Profesor - string
         """
+        disciplina = Disciplina(newId , Nume, Profesor)
         try:
-            self.__validatorDisciplina.validareID(newId)
+            self.__validatorDisciplina.validareDiscilina(disciplina)
         except:
-            print("New ID is invalid")
+            print("Invalid Discipline")
             return
         
         try:
@@ -71,4 +72,4 @@ class ServiceDiscipline:
             print("Existing ID is invalid")
             return
         
-        self.__repoDisciplina.update_disciplina(idDisciplina, newId , Nume, Profesor)
+        self.__repoDisciplina.update_disciplina(idDisciplina, disciplina)

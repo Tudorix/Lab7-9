@@ -28,6 +28,7 @@ class TestStudent:
         self.serviceStudenti.adauga_student(48 , "Tudor", 19)
         self.serviceStudenti.adauga_student(56 , "Andrei", 23)
         self.serviceStudenti.update_student("56", 36, "Stefan", 18)
+        print(self.serviceStudenti.get_studenti()[1].getNume())
         assert self.serviceStudenti.get_studenti()[1].getNume() == "Stefan"
         assert self.serviceStudenti.get_studenti()[1].getID() == 36
         assert self.serviceStudenti.get_studenti()[1].getVarsta() == 18

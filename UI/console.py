@@ -137,5 +137,29 @@ class Console:
                         (ID , nume, profesor) = self.citeste_disciplina()
                         self.serviceDiscipline.update_disciplina(args[2],ID, nume, profesor)
                         
+            elif args[0] == "cauta":
+                if len(args) <= 1:
+                    print("You forgot to specify the type(student/disciplina)")
+                elif args[1] == "student":
+                    
+                    if len(args) <= 2:
+                        print("You forgot to specify the criteria")
+                    else:
+                        try:
+                            argumente = args[2:]
+                            lista = self.serviceStudenti.cautare_student(argumente)
+                            for e in lista:
+                                print(e)
+                        except:
+                            print("Invalid arguments")
+                        
+                elif args[1] == "disciplina":
+                    
+                    if len(args) <= 2:
+                        print("You forgot to specify the disciplina ID")
+                    else:
+                        (ID , nume, profesor) = self.citeste_disciplina()
+                        self.serviceDiscipline.update_disciplina(args[2],ID, nume, profesor)
+                        
             else:
                 print("Invalid command")

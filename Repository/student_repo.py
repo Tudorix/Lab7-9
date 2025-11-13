@@ -47,22 +47,18 @@ class StudentRepo:
                 
         print("There is no student with that ID")
         
-    def update_student(self , ID, newId, Nume, Varsta):
+    def update_student(self , ID, student):
         """
             Functie care modifica un student din lista de studenti
             @param ID - string
-            @param newId - int
-            @param Varsta - int
-            @param Nume - string
+            @param student - Student
         """
-        if self.exista_ID(newId) and int(ID) != newId:
+        if self.exista_ID(student.getID()) and int(ID) != student.getID():
             print("There is nother student with that ID")
         else:
             for i in range(len(self.__lista_studenti)):
                 if self.__lista_studenti[i].getID() == int(ID):
-                    self.__lista_studenti[i].setID(newId)
-                    self.__lista_studenti[i].setNume(Nume)
-                    self.__lista_studenti[i].setVarsta(Varsta)
+                    self.__lista_studenti[i] = student
                     print("Student updated successfully")
                     return
                     

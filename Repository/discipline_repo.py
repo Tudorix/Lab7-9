@@ -6,6 +6,9 @@ class DisciplineRepo:
         self.__lista_discipline = []
         
     def getList(self):
+        """ 
+            Functie care returneaza lista de discipline
+        """
         return self.__lista_discipline
         
     def rst(self):
@@ -46,7 +49,7 @@ class DisciplineRepo:
                 return
         print("There is no disciplina with that ID")
         
-    def update_disciplina(self , ID , newID, Nume, Profesor):
+    def update_disciplina(self , ID , disciplina):
         """
             Functie care modifica o disciplina din lista de discipline
             @param ID - string
@@ -54,14 +57,12 @@ class DisciplineRepo:
             @param Nume - string
             @param Profesor - string
         """
-        if self.exista_ID(newID) and int(ID) != newID:
+        if self.exista_ID(disciplina.getID()) and int(ID) != disciplina.getID():
             print("There is another Discipline with this ID")
         else:
             for i in range(len(self.__lista_discipline)):
                 if self.__lista_discipline[i].getID() == int(ID):
-                    self.__lista_discipline[i].setID(newID)
-                    self.__lista_discipline[i].setNume(Nume)
-                    self.__lista_discipline[i].setProfesor(Profesor)
+                    self.__lista_discipline[i] = disciplina
                     print("Disciplina has been updated successfully!")
                     return
                 

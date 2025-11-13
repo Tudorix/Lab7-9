@@ -10,6 +10,41 @@ class ServiceStudent:
         self.__validatorStudent = ValidatorStudent
         self.__repoStudent = RepoStudent
         
+    def cautare_student(self, args):
+        if len(args) != 2:
+            raise Exception
+        
+        case = 0
+        
+        if args[0] == "ID" : 
+            case = 1
+            try:
+                self.__validatorStudent.validareID(args[1])
+            except:
+                raise Exception
+        elif args[0] == "Nume" :
+            case = 2
+            try:
+                self.__validatorStudent.validareCuvant(args[1])
+            except:
+                raise Exception
+        elif args[0] == "Varsta" : 
+            case = 3
+            try:
+                self.__validatorStudent.validareVarsta(args[1])
+            except:
+                raise Exception
+        else : raise Exception
+        
+        lista = self.get_studenti()
+        lista_filtrata = []
+        
+        for e in self.get_studenti():
+            if (case == 1 and e.getID() == int(args[1])) or (case == 2 and e.getNume() == args[1]) or (case == 3 and e.getVarsta() == int(args[1])):
+                lista_filtrata.append(e)
+        
+        return lista_filtrata
+        
     def reset_list(self):
         """
             Functie care reseteaza lista de studenti
@@ -52,10 +87,11 @@ class ServiceStudent:
             @param newId - int
             @param Nume - string
         """
+        student = Student(newId , Nume, Varsta)
         try:
-            self.__validatorStudent.validareID(newId)
+            self.__validatorStudent.validareStudent(student)
         except:
-            print("New ID is invalid")
+            print("Invalid Student")
             return
         
         try:
@@ -64,7 +100,7 @@ class ServiceStudent:
             print("Existing ID is invalid")
             return
         
-        self.__repoStudent.update_student(idStudent, newId , Nume, Varsta)
+        self.__repoStudent.update_student(idStudent, student)
         
     def get_studenti(self):
         """ 

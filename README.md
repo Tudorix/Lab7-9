@@ -1,3 +1,5 @@
 # Lab7-9
-- Modifica update studnet (make student in service)
 - Modificat Functionalitati in documentatie
+
+- Căutare student, căutarea de disciplină
+- Asignare de note la un student și o disciplină

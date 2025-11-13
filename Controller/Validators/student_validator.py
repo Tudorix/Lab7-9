@@ -31,3 +31,24 @@ class ValidatorStudent:
             
         if ID < 0:
             raise Exception
+        
+    def validareVarsta(self, Varsta):
+        """ 
+            Functie de validare pentru Varsta
+            @param Varsta - int
+        """
+        try:
+            Varsta = int(Varsta)
+        except:
+            raise Exception
+            
+        if Varsta < 0:
+            raise Exception
+        
+    def validareCuvant(self, Cuvant):
+        """ 
+            Functie de validare pentru un Cuvant
+            @param Cuvant - string
+        """
+        if Cuvant == "":
+            raise Exception
