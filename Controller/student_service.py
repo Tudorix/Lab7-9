@@ -58,12 +58,11 @@ class ServiceStudent:
             @param Nume - string
             @param Varsta - int
         """
-        student = Student(idStudent , Nume, Varsta)
+        student = Student(idStudent , Nume.strip(), Varsta)
         try:
             self.__validatorStudent.validareStudent(student)
         except:
-            print("Invalid Student")
-            return
+            raise ValueError
         
         self.__repoStudent.adauga_student(student)
         

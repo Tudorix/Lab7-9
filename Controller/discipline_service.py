@@ -21,6 +21,39 @@ class ServiceDiscipline:
             Functie care returneza lista curenta de discipline
         """
         return self.__repoDisciplina.getList()
+    
+    def cautare_disciplina(self, args):
+        if len(args) != 2:
+            raise Exception
+        
+        case = 0
+        if args[0] == "ID" : 
+            case = 1
+            try:
+                self.__validatorDisciplina.validareID(args[1])
+            except:
+                raise Exception
+        elif args[0] == "Nume" :
+            case = 2
+            try:
+                self.__validatorDisciplina.validareCuvant(args[1])
+            except:
+                raise Exception
+        elif args[0] == "Profesor" : 
+            case = 3
+            try:
+                self.__validatorDisciplina.validareCuvant(args[1])
+            except:
+                raise Exception
+        else : raise Exception
+        
+        lista_filtrata = []
+        
+        for e in self.get_discipline():
+            if (case == 1 and e.getID() == int(args[1])) or (case == 2 and e.getNume() == args[1]) or (case == 3 and e.getProfesor() == args[1]):
+                lista_filtrata.append(e)
+        
+        return lista_filtrata
 
     def adauga_disciplina(self , ID, Nume, Profesor):
         """
@@ -29,7 +62,7 @@ class ServiceDiscipline:
             @param Nume - string
             @param Profesor - string
         """
-        disciplina = Disciplina(ID , Nume, Profesor)
+        disciplina = Disciplina(ID , Nume.strip(), Profesor.strip())
         try:
             self.__validatorDisciplina.validareDiscilina(disciplina)
         except:

@@ -6,6 +6,9 @@ class StudentRepo:
         self.__lista_studenti = []
         
     def getList(self):
+        """ 
+            Functie care returneaza lista de studenti
+        """
         return self.__lista_studenti
         
     def rst(self):
@@ -30,7 +33,7 @@ class StudentRepo:
             @param student - Student
         """
         if self.exista_ID(student.getID()):
-            print("There is nother student with that ID")
+            print("There is another Student with that ID")
         else:
             self.__lista_studenti.append(student)
             

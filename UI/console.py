@@ -31,7 +31,7 @@ class Console:
                 varsta = int(input("Enter the Age\n>>>")) 
                 break
             except ValueError:
-                print("ID invalid")
+                print("Age invalid")
         
         while nume == "":
             nume = input("Enter the Name\n>>>")
@@ -97,7 +97,12 @@ class Console:
                     print("You forgot to specify the type(student/disciplina)")
                 elif args[1] == "student":
                     (ID , nume, varsta) = self.citeste_student()
-                    self.serviceStudenti.adauga_student(ID , nume, varsta)
+                    try:
+                        self.serviceStudenti.adauga_student(ID , nume, varsta)
+                    except ValueError:
+                        print("Invalid Student")
+                    except IndexError:
+                        print("There is another Student with that ID")
                 elif args[1] == "disciplina":
                     (ID , nume, profesor) = self.citeste_disciplina()
                     self.serviceDiscipline.adauga_disciplina(ID , nume, profesor)
@@ -148,6 +153,18 @@ class Console:
                         try:
                             argumente = args[2:]
                             lista = self.serviceStudenti.cautare_student(argumente)
+                            for e in lista:
+                                print(e)
+                        except:
+                            print("Invalid arguments")
+                elif args[1] == "disciplina":
+                    
+                    if len(args) <= 2:
+                        print("You forgot to specify the criteria")
+                    else:
+                        try:
+                            argumente = args[2:]
+                            lista = self.serviceDiscipline.cautare_disciplina(argumente)
                             for e in lista:
                                 print(e)
                         except:

@@ -1,5 +1,6 @@
 # Lab7-9
 - Modificat Functionalitati in documentatie
+- Documentatie pentru I2
 
-- Căutare student, căutarea de disciplină
-- Asignare de note la un student și o disciplină
+- Asignare de note la un student și o disciplină(Creare, Citire, Stergere)
+- Scapare de printuri din service(exceptii)

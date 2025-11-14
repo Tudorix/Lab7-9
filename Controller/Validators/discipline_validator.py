@@ -31,3 +31,11 @@ class ValidatorDiscipline:
             
         if ID < 0:
             raise Exception
+        
+    def validareCuvant(self, Cuvant):
+        """ 
+            Functie de validare pentru un Cuvant
+            @param Cuvant - string
+        """
+        if Cuvant == "":
+            raise Exception
