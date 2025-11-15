@@ -1,9 +1,12 @@
 from Domain.nota import Nota
 class ServiceNote:
     
-    def __init__(self, RepoNota, ValidatorNota):
+    def __init__(self, ValidatorNota , RepoNota):
         self.__validatorNota = ValidatorNota
         self.__repoNota = RepoNota
+        
+    def get_note(self):
+        return self.__repoNota.get_note()
         
     def adauga_nota(self , ID , Valoare, Student , Disciplina):
         nota = Nota(Student , Disciplina , Valoare , ID)
@@ -13,3 +16,5 @@ class ServiceNote:
             raise Exception
         
         self.__repoNota.adauga_nota(nota)
+        
+    #def sterge_nota(self)

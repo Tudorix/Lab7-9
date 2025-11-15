@@ -10,6 +10,7 @@ from Repository.note_repo import NoteRepo
 #----
 from Controller.Validators.student_validator import ValidatorStudent
 from Controller.Validators.discipline_validator import ValidatorDiscipline
+from Controller.Validators.note_validator import ValidatorNota
 # TEST
 from Test.testStudent import TestStudent
 from Test.testDisciplina import TestDiscipline
@@ -41,9 +42,11 @@ note_repo = NoteRepo()
 
 stud_valid = ValidatorStudent()
 disc_valid = ValidatorDiscipline()
+note_valid = ValidatorNota()
 
 stud_srv = ServiceStudent(stud_valid , stud_repo)
 disc_srv = ServiceDiscipline(disc_valid , disc_repo)
+nota_srv = ServiceNote(note_valid, note_repo)
 
-ui = Console(stud_srv,disc_srv,ServiceNote)
+ui = Console(stud_srv,disc_srv,nota_srv)
 ui.run()

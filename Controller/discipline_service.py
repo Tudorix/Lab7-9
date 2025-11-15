@@ -31,6 +31,8 @@ class ServiceDiscipline:
             case = 1
             try:
                 self.__validatorDisciplina.validareID(args[1])
+                if not self.__repoDisciplina.exista_ID(args[1]):
+                    raise IndexError
             except:
                 raise Exception
         elif args[0] == "Nume" :
@@ -66,8 +68,7 @@ class ServiceDiscipline:
         try:
             self.__validatorDisciplina.validareDiscilina(disciplina)
         except:
-            print("Invalid Discipline")
-            return
+            raise ValueError
         
         self.__repoDisciplina.adauga_disciplina(disciplina)
         
@@ -79,8 +80,7 @@ class ServiceDiscipline:
         try:
             self.__validatorDisciplina.validareID(ID)
         except:
-            print("ID is Invalid")
-            return
+            raise ValueError
 
         self.__repoDisciplina.sterge_disciplina(ID)
         
@@ -96,13 +96,11 @@ class ServiceDiscipline:
         try:
             self.__validatorDisciplina.validareDiscilina(disciplina)
         except:
-            print("Invalid Discipline")
-            return
+            raise ValueError
         
         try:
             self.__validatorDisciplina.validareID(idDisciplina)
         except:
-            print("Existing ID is invalid")
-            return
+            raise IndexError
         
         self.__repoDisciplina.update_disciplina(idDisciplina, disciplina)

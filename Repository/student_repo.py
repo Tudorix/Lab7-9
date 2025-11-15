@@ -33,7 +33,7 @@ class StudentRepo:
             @param student - Student
         """
         if self.exista_ID(student.getID()):
-            print("There is another Student with that ID")
+            raise IndexError
         else:
             self.__lista_studenti.append(student)
             
@@ -45,10 +45,9 @@ class StudentRepo:
         for i in range(len(self.__lista_studenti)):
             if self.__lista_studenti[i].getID() == int(ID):
                 del self.__lista_studenti[i]
-                print("Student deleted successfully")
                 return
                 
-        print("There is no student with that ID")
+        raise MemoryError
         
     def update_student(self , ID, student):
         """
@@ -62,7 +61,6 @@ class StudentRepo:
             for i in range(len(self.__lista_studenti)):
                 if self.__lista_studenti[i].getID() == int(ID):
                     self.__lista_studenti[i] = student
-                    print("Student updated successfully")
                     return
                     
-            print("There is no student with that ID")
+            raise MemoryError

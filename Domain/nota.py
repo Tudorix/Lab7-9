@@ -30,4 +30,4 @@ class Nota:
         self.setValoare = valoare
         
     def __str__(self):
-        return f"({self.__student.getNume()} , {self.__disciplina.getNume()} , {self.__valoare})"
+        return f"({self.getID()} , {self.__student.getNume()} , {self.__disciplina.getNume()} , {self.__valoare})"

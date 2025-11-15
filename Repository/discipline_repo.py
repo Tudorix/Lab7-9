@@ -33,7 +33,7 @@ class DisciplineRepo:
             @param disciplina - Disciplina
         """
         if self.exista_ID(disciplina.getID()):
-            print("There is another Discipline with this ID")
+            raise IndexError
         else:
             self.__lista_discipline.append(disciplina)
         
@@ -45,9 +45,8 @@ class DisciplineRepo:
         for i in range(len(self.__lista_discipline)):
             if self.__lista_discipline[i].getID() == int(ID):
                 del self.__lista_discipline[i]
-                print("Disciplina has been deleted successfully!")
                 return
-        print("There is no disciplina with that ID")
+        raise MemoryError
         
     def update_disciplina(self , ID , disciplina):
         """
@@ -63,9 +62,8 @@ class DisciplineRepo:
             for i in range(len(self.__lista_discipline)):
                 if self.__lista_discipline[i].getID() == int(ID):
                     self.__lista_discipline[i] = disciplina
-                    print("Disciplina has been updated successfully!")
                     return
                 
-            print("There is no disciplina with that ID")
+            raise MemoryError
         
 

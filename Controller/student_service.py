@@ -20,6 +20,8 @@ class ServiceStudent:
             case = 1
             try:
                 self.__validatorStudent.validareID(args[1])
+                if not self.__repoStudent.exista_ID(args[1]):
+                    raise TypeError
             except:
                 raise Exception
         elif args[0] == "Nume" :
@@ -74,8 +76,7 @@ class ServiceStudent:
         try:
             self.__validatorStudent.validareID(idStudent)
         except:
-            print("ID is invalid")
-            return
+            raise ValueError
         
         self.__repoStudent.sterge_student(idStudent)
         
@@ -90,14 +91,12 @@ class ServiceStudent:
         try:
             self.__validatorStudent.validareStudent(student)
         except:
-            print("Invalid Student")
-            return
+            raise ValueError
         
         try:
             self.__validatorStudent.validareID(idStudent)
         except:
-            print("Existing ID is invalid")
-            return
+            raise IndexError
         
         self.__repoStudent.update_student(idStudent, student)
         

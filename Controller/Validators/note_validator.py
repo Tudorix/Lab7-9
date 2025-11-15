@@ -1,8 +1,13 @@
 class ValidatorNota:
     
-    def __init__(self, RepoStudent, RepoDisciplina):
-        self.__repoStud = RepoStudent
-        self.__repoDisc = RepoDisciplina
-    
     def validareNota(self, Nota):
-        pass
+        erori = []
+        
+        if Nota.getValoare() < 0 or Nota.getValoare() > 10:
+            erori.append("ValoareError")
+        if Nota.getID() < 0:
+            erori.append("IdError")
+        
+        if len(erori) > 0:
+            raise erori
+        
