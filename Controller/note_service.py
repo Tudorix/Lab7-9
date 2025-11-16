@@ -17,4 +17,11 @@ class ServiceNote:
         
         self.__repoNota.adauga_nota(nota)
         
-    #def sterge_nota(self)
+    def sterge_nota(self, ID):
+        
+        try:
+            self.__validatorNota.validareID(ID)
+        except:
+            raise ValueError
+        
+        self.__repoNota.sterge_nota(ID)

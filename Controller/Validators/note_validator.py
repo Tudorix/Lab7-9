@@ -11,3 +11,15 @@ class ValidatorNota:
         if len(erori) > 0:
             raise erori
         
+    def validareID(self, ID):
+        """ 
+            Functie de validare pentru ID
+            @param ID - int
+        """
+        try:
+            ID = int(ID)
+        except:
+            raise Exception
+            
+        if ID < 0:
+            raise Exception

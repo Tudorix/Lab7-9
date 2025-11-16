@@ -117,7 +117,7 @@ class Console:
                         "exit\n" + 
                         "add student/disciplina/nota\n" + 
                         "update student/disciplina\n" + 
-                        "delete student/disciplina\n" + 
+                        "del student/disciplina/nota\n" + 
                         "print student/disciplina/nota")
                 elif args[0] == "print":
                     if len(args) <= 1:

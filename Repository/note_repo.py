@@ -16,3 +16,15 @@ class NoteRepo:
             print("There is another Nota with that ID")
         else:
             self.__lista_note.append(Nota)
+            
+    def sterge_nota(self , ID):
+        """
+            Functie care sterge nota din lista de note
+            @param ID - string
+        """
+        for i in range(len(self.__lista_note)):
+            if self.__lista_note[i].getID() == int(ID):
+                del self.__lista_note[i]
+                return
+                
+        raise MemoryError
