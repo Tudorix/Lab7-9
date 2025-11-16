@@ -1,6 +1,10 @@
 class ValidatorNota:
     
     def validareNota(self, Nota):
+        """ 
+            Functie de validare pentru Nota
+            @param Nota - Nota
+        """
         erori = []
         
         if Nota.getValoare() < 0 or Nota.getValoare() > 10:

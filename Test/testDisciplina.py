@@ -44,6 +44,19 @@ class TestDiscipline:
         assert self.serviceDiscipline.get_discipline()[0].getNume() == "Info"
         assert self.serviceDiscipline.get_discipline()[0].getProfesor() == "Daniela"
         
+    def test_cauta_disciplina(self):
+        """ 
+            Functie de test pentru cauta_disciplina
+        """
+        self.serviceDiscipline.reset_list()
+        self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
+        self.serviceDiscipline.adauga_disciplina(24 , "Info", "Daniela")
+        argumente = ["ID" , 24]
+        disciplina = self.serviceDiscipline.cautare_disciplina(argumente)[0]
+        assert disciplina.getID() == 24
+        assert disciplina.getNume() == "Info"
+        assert disciplina.getProfesor() == "Daniela"
+        
     def test_all(self):
         """ 
             Functie de test pentru toate functiile de test
@@ -51,3 +64,4 @@ class TestDiscipline:
         self.test_adauga_disciplina()
         self.test_update_disciplina()
         self.test_sterge_disciplina()
+        self.test_cauta_disciplina()

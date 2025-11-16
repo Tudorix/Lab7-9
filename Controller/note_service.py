@@ -2,13 +2,34 @@ from Domain.nota import Nota
 class ServiceNote:
     
     def __init__(self, ValidatorNota , RepoNota):
+        """
+            Constructorul clasei ServiceDiscipline
+            @param ValidatorNota - ValidatorNota
+            @param RepoNota - NotaRepo
+        """
         self.__validatorNota = ValidatorNota
         self.__repoNota = RepoNota
         
+    def reset_list(self):
+        """
+            Functie care reseteaza lista de note
+        """
+        self.__repoNota.rst()
+        
     def get_note(self):
+        """ 
+            Functie care returneza lista curenta de note
+        """
         return self.__repoNota.get_note()
         
     def adauga_nota(self , ID , Valoare, Student , Disciplina):
+        """
+            Functie care adauga nota in lista de note
+            @param ID - int
+            @param Valoare - int
+            @param Student - Student
+            @param Disciplina - Disciplina
+        """
         nota = Nota(Student , Disciplina , Valoare , ID)
         try:
             self.__validatorNota.validareNota(nota)
@@ -18,7 +39,10 @@ class ServiceNote:
         self.__repoNota.adauga_nota(nota)
         
     def sterge_nota(self, ID):
-        
+        """
+            Functie care sterge nota din lista de note
+            @param ID - int
+        """
         try:
             self.__validatorNota.validareID(ID)
         except:

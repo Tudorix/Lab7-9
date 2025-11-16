@@ -1,5 +1,12 @@
 class Nota:
     def __init__(self, Student, Disciplina, valoare, ID):
+        """
+            Constructorul clasei Student
+            @param ID - int
+            @param Student - Student
+            @param Disciplina - Disciplina
+            @param valoare - int
+        """
         self.__ID = ID
         self.__student = Student
         self.__disciplina = Disciplina
@@ -30,4 +37,7 @@ class Nota:
         self.setValoare = valoare
         
     def __str__(self):
+        """
+            Functie care schimba obiectul Nota sub forma unui string
+        """
         return f"({self.getID()} , {self.__student.getNume()} , {self.__disciplina.getNume()} , {self.__valoare})"

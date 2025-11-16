@@ -23,6 +23,10 @@ class ServiceDiscipline:
         return self.__repoDisciplina.getList()
     
     def cautare_disciplina(self, args):
+        """ 
+            Functie care cauta o disciplina
+            @param args - lista
+        """
         if len(args) != 2:
             raise Exception
         

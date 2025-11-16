@@ -44,6 +44,19 @@ class TestStudent:
         assert self.serviceStudenti.get_studenti()[0].getNume() == "Andrei"
         assert self.serviceStudenti.get_studenti()[0].getID() == 56
         assert self.serviceStudenti.get_studenti()[0].getVarsta() == 23
+        
+    def test_cauta_student(self):
+        """ 
+            Functie de test pentru cauta_student
+        """
+        self.serviceStudenti.reset_list()
+        self.serviceStudenti.adauga_student(48 , "Tudor", 19)
+        self.serviceStudenti.adauga_student(56 , "Andrei", 23)
+        argumente = ["ID" , 48]
+        student = self.serviceStudenti.cautare_student(argumente)[0]
+        assert student.getNume() == "Tudor"
+        assert student.getID() == 48
+        assert student.getVarsta() == 19
 
     def test_all(self):
         """ 
@@ -52,3 +65,4 @@ class TestStudent:
         self.test_adauga_student()
         self.test_update_student()
         self.test_stergere_student()
+        self.test_cauta_student()

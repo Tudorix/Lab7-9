@@ -10,6 +10,12 @@ class NoteRepo:
             if e.getID() == ID:
                 return True
         return False
+    
+    def rst(self):
+        """
+            Functie care reseteaza lista de note
+        """
+        self.__lista_note = []
         
     def adauga_nota(self, Nota):
         if self.exista_ID(Nota.getID()):

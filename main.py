@@ -14,6 +14,7 @@ from Controller.Validators.note_validator import ValidatorNota
 # TEST
 from Test.testStudent import TestStudent
 from Test.testDisciplina import TestDiscipline
+from Test.testNote import TestNote
 
 stud_repo_test = StudentRepo()
 disc_repo_test = DisciplineRepo()
@@ -21,15 +22,20 @@ note_repo_test = NoteRepo()
 
 stud_valid_test = ValidatorStudent()
 disc_valid_test = ValidatorDiscipline()
+note_valid_test = ValidatorNota()
 
 stud_srv_test = ServiceStudent(stud_valid_test , stud_repo_test)
 disc_srv_test = ServiceDiscipline(disc_valid_test , disc_repo_test)
+nota_srv_test = ServiceNote(note_valid_test , note_repo_test)
 
 stud_test = TestStudent(stud_srv_test)
 stud_test.test_all()
 
 disc_test = TestDiscipline(disc_srv_test)
 disc_test.test_all()
+
+note_test = TestNote(nota_srv_test , stud_srv_test , disc_srv_test)
+note_test.test_all()
 
 # MAIN
 

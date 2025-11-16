@@ -11,6 +11,10 @@ class ServiceStudent:
         self.__repoStudent = RepoStudent
         
     def cautare_student(self, args):
+        """ 
+            Functie care cauta un student
+            @param args - lista
+        """
         if len(args) != 2:
             raise Exception
         
