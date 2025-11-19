@@ -57,6 +57,17 @@ class TestStudent:
         assert student.getNume() == "Tudor"
         assert student.getID() == 48
         assert student.getVarsta() == 19
+        
+    def test_gen_random(self):
+        """ 
+            Functie de test pentru cauta_student
+        """
+        self.serviceStudenti.reset_list()
+        self.serviceStudenti.gen_studenti(48)
+        assert self.serviceStudenti.lenght() == 48
+        self.serviceStudenti.gen_studenti(12)
+        assert self.serviceStudenti.lenght() == 60
+
 
     def test_all(self):
         """ 
@@ -66,3 +77,4 @@ class TestStudent:
         self.test_update_student()
         self.test_stergere_student()
         self.test_cauta_student()
+        self.test_gen_random()

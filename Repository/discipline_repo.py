@@ -16,6 +16,17 @@ class DisciplineRepo:
             Functie care reseteaza lista de discipline
         """
         self.__lista_discipline = []
+        
+    def get_by_id(self, ID):
+        """
+            Functie care returneaza disciplina daca ID exista in lista
+            @param ID - int
+            Raise - IndexError 
+        """
+        for e in self.__lista_discipline:
+            if ID == e.getID():
+                return e
+        raise IndexError
 
     def exista_ID(self, ID):
         """
@@ -31,6 +42,7 @@ class DisciplineRepo:
         """
             Functie care adauga disciplina in lista de discipline
             @param disciplina - Disciplina
+            Raise - IndexError 
         """
         if self.exista_ID(disciplina.getID()):
             raise IndexError
@@ -41,6 +53,7 @@ class DisciplineRepo:
         """
             Functie care sterge disciplina din lista de discipline
             @param ID - string
+            Raise - MemoryError
         """
         for i in range(len(self.__lista_discipline)):
             if self.__lista_discipline[i].getID() == int(ID):
@@ -55,6 +68,7 @@ class DisciplineRepo:
             @param newID - int
             @param Nume - string
             @param Profesor - string
+            Raise - MemoryError
         """
         if self.exista_ID(disciplina.getID()) and int(ID) != disciplina.getID():
             print("There is another Discipline with this ID")

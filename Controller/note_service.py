@@ -1,7 +1,8 @@
 from Domain.nota import Nota
+import random
 class ServiceNote:
     
-    def __init__(self, ValidatorNota , RepoNota):
+    def __init__(self, ValidatorNota , RepoNota , RepoStudent , RepoDiciplina):
         """
             Constructorul clasei ServiceDiscipline
             @param ValidatorNota - ValidatorNota
@@ -9,6 +10,8 @@ class ServiceNote:
         """
         self.__validatorNota = ValidatorNota
         self.__repoNota = RepoNota
+        self.__repoStud = RepoStudent
+        self.__repoDisc = RepoDiciplina
         
     def reset_list(self):
         """
@@ -22,7 +25,7 @@ class ServiceNote:
         """
         return self.__repoNota.get_note()
         
-    def adauga_nota(self , ID , Valoare, Student , Disciplina):
+    def adauga_nota(self , ID , Valoare, idStudent , idDisciplina):
         """
             Functie care adauga nota in lista de note
             @param ID - int
@@ -30,6 +33,10 @@ class ServiceNote:
             @param Student - Student
             @param Disciplina - Disciplina
         """
+        
+        Student = self.__repoStud.get_by_id(idStudent)
+        Disciplina = self.__repoDisc.get_by_id(idDisciplina)
+        
         nota = Nota(Student , Disciplina , Valoare , ID)
         try:
             self.__validatorNota.validareNota(nota)
@@ -37,6 +44,12 @@ class ServiceNote:
             raise Exception
         
         self.__repoNota.adauga_nota(nota)
+        
+    def gen_studenti(self , nr):
+        while nr >= 0:
+            varsta = random.randint(18 , 30)
+            id = random.randint(0 , 1000)
+            
         
     def sterge_nota(self, ID):
         """

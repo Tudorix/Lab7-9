@@ -1,5 +1,6 @@
 from Domain.student import Student
-
+import random
+import string
 class ServiceStudent:
     def __init__(self, ValidatorStudent, RepoStudent):
         """
@@ -10,10 +11,17 @@ class ServiceStudent:
         self.__validatorStudent = ValidatorStudent
         self.__repoStudent = RepoStudent
         
+    def lenght(self):
+        """ 
+            Functie care returneaza lungimea listei de studenti
+        """
+        return self.__repoStudent.lenght()
+        
     def cautare_student(self, args):
         """ 
             Functie care cauta un student
             @param args - lista
+            Raise - Exeption
         """
         if len(args) != 2:
             raise Exception
@@ -24,8 +32,6 @@ class ServiceStudent:
             case = 1
             try:
                 self.__validatorStudent.validareID(args[1])
-                if not self.__repoStudent.exista_ID(args[1]):
-                    raise TypeError
             except:
                 raise Exception
         elif args[0] == "Nume" :
@@ -50,6 +56,34 @@ class ServiceStudent:
                 lista_filtrata.append(e)
         
         return lista_filtrata
+    
+    def gen_studenti(self , nr):
+        """_summary_
+
+        Args:
+            nr (_type_): _description_
+        """
+        while nr > 0:
+            varsta = random.randint(18 , 30)
+            id = random.randint(0 , 10000000)
+            
+            k = random.randint(6,12)
+            letters = string.ascii_letters
+            alg = ""
+            for i in range(0 ,k):
+                alg += random.choice(letters)
+            nume = ""
+            nume = nume.join(alg)
+            
+            student = Student(id , nume , varsta)
+            
+            try:
+                self.__validatorStudent.validareStudent(student)
+                if not self.__repoStudent.exista_ID(student.getID()):
+                    nr -= 1
+                    self.__repoStudent.adauga_student(student)
+            except:
+                pass
         
     def reset_list(self):
         """
@@ -63,6 +97,7 @@ class ServiceStudent:
             @param idStudent - int
             @param Nume - string
             @param Varsta - int
+            Raise - ValueError
         """
         student = Student(idStudent , Nume.strip(), Varsta)
         try:
@@ -76,6 +111,7 @@ class ServiceStudent:
         """
             Functie care sterge student din lista de studenti
             @param idStudent - int
+            Raise - ValueError
         """
         try:
             self.__validatorStudent.validareID(idStudent)
@@ -90,6 +126,8 @@ class ServiceStudent:
             @param ID - string
             @param newId - int
             @param Nume - string
+            Raise - ValueError - Invalid Student
+            Raise - IndexError - Invalid ID
         """
         student = Student(newId , Nume, Varsta)
         try:

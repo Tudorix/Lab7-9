@@ -26,7 +26,7 @@ note_valid_test = ValidatorNota()
 
 stud_srv_test = ServiceStudent(stud_valid_test , stud_repo_test)
 disc_srv_test = ServiceDiscipline(disc_valid_test , disc_repo_test)
-nota_srv_test = ServiceNote(note_valid_test , note_repo_test)
+nota_srv_test = ServiceNote(note_valid_test , note_repo_test , stud_repo_test , disc_repo_test)
 
 stud_test = TestStudent(stud_srv_test)
 stud_test.test_all()
@@ -52,7 +52,7 @@ note_valid = ValidatorNota()
 
 stud_srv = ServiceStudent(stud_valid , stud_repo)
 disc_srv = ServiceDiscipline(disc_valid , disc_repo)
-nota_srv = ServiceNote(note_valid, note_repo)
+nota_srv = ServiceNote(note_valid, note_repo, stud_repo , disc_repo)
 
 ui = Console(stud_srv,disc_srv,nota_srv)
 ui.run()

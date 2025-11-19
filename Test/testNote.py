@@ -14,12 +14,8 @@ class TestNote:
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         
-        argumente = ["ID" , 48]
-        student = self.serviceStudenti.cautare_student(argumente)[0]
-        argumente = ["ID" , 12]
-        disciplina = self.serviceDiscipline.cautare_disciplina(argumente)[0]
-        self.serviceNote.adauga_nota(23 , 10, student , disciplina)
-        self.serviceNote.adauga_nota(45 , 7, student , disciplina)
+        self.serviceNote.adauga_nota(23 , 10, 48 , 12)
+        self.serviceNote.adauga_nota(45 , 7, 48 , 12)
         
         assert self.serviceNote.get_note()[1].getStudent().getNume() == "Tudor"
         assert self.serviceNote.get_note()[1].getDisciplina().getNume() == "Mate"
@@ -32,12 +28,8 @@ class TestNote:
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(12 , "Mate", "Stefan")
         
-        argumente = ["ID" , 48]
-        student = self.serviceStudenti.cautare_student(argumente)[0]
-        argumente = ["ID" , 12]
-        disciplina = self.serviceDiscipline.cautare_disciplina(argumente)[0]
-        self.serviceNote.adauga_nota(23 , 10, student , disciplina)
-        self.serviceNote.adauga_nota(45 , 7, student , disciplina)
+        self.serviceNote.adauga_nota(23 , 10, 48 , 12)
+        self.serviceNote.adauga_nota(45 , 7, 48 , 12)
         
         self.serviceNote.sterge_nota(23)
         

@@ -26,6 +26,7 @@ class ServiceDiscipline:
         """ 
             Functie care cauta o disciplina
             @param args - lista
+            Raise - Exeption
         """
         if len(args) != 2:
             raise Exception
@@ -35,8 +36,6 @@ class ServiceDiscipline:
             case = 1
             try:
                 self.__validatorDisciplina.validareID(args[1])
-                if not self.__repoDisciplina.exista_ID(args[1]):
-                    raise IndexError
             except:
                 raise Exception
         elif args[0] == "Nume" :
@@ -67,6 +66,7 @@ class ServiceDiscipline:
             @param ID - int
             @param Nume - string
             @param Profesor - string
+            Raise - ValueError
         """
         disciplina = Disciplina(ID , Nume.strip(), Profesor.strip())
         try:
@@ -80,6 +80,7 @@ class ServiceDiscipline:
         """
             Functie care sterge disciplina din lista de discipline
             @param ID - int
+            Raise - ValueError
         """
         try:
             self.__validatorDisciplina.validareID(ID)
@@ -95,6 +96,8 @@ class ServiceDiscipline:
             @param newId - int
             @param Nume - string
             @param Profesor - string
+            Raise - ValueError - Invalid Disciplina
+            Raise - IndexError - Invalid ID
         """
         disciplina = Disciplina(newId , Nume, Profesor)
         try:

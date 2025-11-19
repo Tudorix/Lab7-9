@@ -101,12 +101,23 @@ class Console:
         
         return (id , nume , profesor)
     
+    def citeste_numar(self):
+        nr = -1
+        while True:
+            try:
+                nr = int(input("Enter the number of students to be generated\n>>>")) 
+                break
+            except ValueError:
+                print("Invalid NUmebr")
+                
+        return nr
+    
     def run(self):
         print("Type 'help' to see the commands")
         running = True
         
         while running:
-            try:
+            #try:
                 com = input("Enter a command:\n>>>")
                 args = com.strip().split()
                 
@@ -115,6 +126,7 @@ class Console:
                 elif args[0] == "help":
                     print("Commands list:\n" + 
                         "exit\n" + 
+                        "gen student\n" +
                         "add student/disciplina/nota\n" + 
                         "update student/disciplina\n" + 
                         "del student/disciplina/nota\n" + 
@@ -137,7 +149,10 @@ class Console:
                         lista = self.serviceNote.get_note()
                         for e in lista:
                             print(e)
-                        
+                            
+                elif com == "gen student":
+                    x = self.citeste_numar()
+                    self.serviceStudenti.gen_studenti(x)
                 elif args[0] == "add":
                     if len(args) <= 1:
                         print("You forgot to specify the type(student/disciplina)")
@@ -162,12 +177,10 @@ class Console:
                     elif args[1] == "nota":
                         (idNota , valoare, idStudent , idDisciplina) = self.citeste_nota()
                         try:
-                            argumente = ["ID" , idStudent]
-                            student = self.serviceStudenti.cautare_student(argumente)[0]
-                            argumente = ["ID" , idDisciplina]
-                            disciplina = self.serviceDiscipline.cautare_disciplina(argumente)[0]
-                            self.serviceNote.adauga_nota(idNota , valoare, student , disciplina)
+                            self.serviceNote.adauga_nota(idNota , valoare, idStudent , idDisciplina)
                             print("Nota added successfully")
+                        except IndexError:
+                            print("There is a missing object with this ID")
                         except:
                             print("Invalid Nota")
                         
@@ -277,5 +290,5 @@ class Console:
                             
                 else:
                     print("Invalid command")
-            except:
-                print ("Invalid command")
+            #except Exception:
+            #   print ("Invalid command")
