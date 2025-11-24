@@ -58,14 +58,9 @@ class ServiceStudent:
         return lista_filtrata
     
     def gen_studenti(self , nr):
-        """_summary_
-
-        Args:
-            nr (_type_): _description_
-        """
         while nr > 0:
             varsta = random.randint(18 , 30)
-            id = random.randint(0 , 10000000)
+            id = random.randint(0 , 100)
             
             k = random.randint(6,12)
             letters = string.ascii_letters

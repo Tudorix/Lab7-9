@@ -1,5 +1,5 @@
 from Domain.nota import Nota
-import random
+import math
 class ServiceNote:
     
     def __init__(self, ValidatorNota , RepoNota , RepoStudent , RepoDiciplina):
@@ -24,6 +24,68 @@ class ServiceNote:
             Functie care returneza lista curenta de note
         """
         return self.__repoNota.get_note()
+    
+    def filtrare_nume_nota(self, disciplina):
+        """
+            Functie care sorteaza studentii dupa Nume si Nota
+        """
+        lista = self.get_note()
+        lista_filt = []
+        
+        #verificare disciplina
+        for i in range(0 ,self.__repoNota.lenght()):
+            if lista[i].getDisciplina().getNume() == disciplina:
+                lista_filt.append(lista[i])
+        
+        lenght = len(lista_filt)
+        if lenght == 0:
+            raise ValueError
+        
+        #filtarre dupa nume
+        for i in range(0 ,lenght - 1):
+            for j in range(i , lenght):
+                if lista_filt[i].getStudent().getNume() > lista_filt[j].getStudent().getNume():
+                    lista_filt[i] , lista_filt[j] = lista_filt[j] , lista_filt[i]
+                elif lista_filt[i].getStudent().getNume() == lista_filt[j].getStudent().getNume():
+                    if lista_filt[i].getValoare() < lista_filt[j].getValoare():
+                        lista_filt[i] , lista_filt[j] = lista_filt[j] , lista_filt[i]
+            
+        return lista_filt
+    
+    def filtrare_20(self):
+        """
+            Functie care sorteaza studentii dupa media notelor
+        """
+        lista_note = self.get_note()
+        lista_studenti = self.__repoStud.getList()
+        
+        lista_medii = []
+        
+        for e in lista_studenti:
+            suma = 0.0
+            nr = 0
+            for i in lista_note:
+                if e.getID() == i.getStudent().getID():
+                    suma += i.getValoare()
+                    nr += 1
+            
+            if suma != 0:
+                suma /= nr
+                lista_medii.append((e.getNume() , suma))
+        
+        lenght = len(lista_medii)
+        percent = math.floor(20/100 * lenght)
+        
+        #filtarre dupa medie
+        for i in range(lenght - 1):
+            for j in range(lenght):
+                if lista_medii[i][1] > lista_medii[j][1]:
+                    aux = lista_medii[i]
+                    lista_medii[i] = lista_medii[j]
+                    lista_medii[j] = aux
+
+        return lista_medii[:percent]
+        
         
     def adauga_nota(self , ID , Valoare, idStudent , idDisciplina):
         """
@@ -44,12 +106,6 @@ class ServiceNote:
             raise Exception
         
         self.__repoNota.adauga_nota(nota)
-        
-    def gen_studenti(self , nr):
-        while nr >= 0:
-            varsta = random.randint(18 , 30)
-            id = random.randint(0 , 1000)
-            
         
     def sterge_nota(self, ID):
         """

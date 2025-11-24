@@ -38,6 +38,9 @@ class Console:
         
         return (id , nume, varsta)
     
+    def add_for_test(self):
+        pass
+    
     def citeste_nota(self):
         """
             Functie care citeste datele pentru obiectul student
@@ -117,7 +120,7 @@ class Console:
         running = True
         
         while running:
-            #try:
+            try:
                 com = input("Enter a command:\n>>>")
                 args = com.strip().split()
                 
@@ -287,8 +290,34 @@ class Console:
                                     print(e)
                             except:
                                 print("Invalid arguments")
-                            
+            
+                elif args[0] == "filt":
+                    if len(args) <= 1:
+                        print("You forgot to specify the type(alfabetic / 20%)")
+                    elif args[1] == "alfabetic":
+                        if len(args) <= 2:
+                            print("You forgot to specify the criteria")
+                        else:
+                            try:
+                                argumente = args[2]
+                                lista = self.serviceNote.filtrare_nume_nota(argumente)
+                                for e in lista:
+                                    print(f"{e.getStudent.getNume()} : {e.getValoare()}")
+                            except:
+                                print("Invalid disciplina")
+                    elif args[1] == "20":
+                        if len(args) <= 2:
+                            print("You forgot to specify the criteria")
+                        else:
+                            try:
+                                argumente = args[2]
+                                lista = self.serviceNote.filtrare_20()
+                                for e in lista:
+                                    print(f"{e[0]} : {e[1]:.2f}")
+                            except:
+                                print("Invalid disciplina")
+                    
                 else:
                     print("Invalid command")
-            #except Exception:
-            #   print ("Invalid command")
+            except Exception:
+                print ("Invalid command")

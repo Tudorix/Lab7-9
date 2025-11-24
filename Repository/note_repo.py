@@ -17,6 +17,12 @@ class NoteRepo:
         """
         self.__lista_note = []
         
+    def lenght(self):
+        """ 
+            Functie ce returneaza lungimea listei de note
+        """
+        return len(self.__lista_note)
+        
     def adauga_nota(self, Nota):
         if self.exista_ID(Nota.getID()):
             print("There is another Nota with that ID")

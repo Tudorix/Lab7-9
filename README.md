@@ -2,7 +2,6 @@
 - Documentatie pentru I3
 
 - Specificateii Gen student
-- Filtrari
-- Rapoarte
-
+- Filtrari 20 % dupa nota
+- Filtrari alfabetic , dupa nota
 
