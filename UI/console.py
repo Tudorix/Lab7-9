@@ -39,7 +39,58 @@ class Console:
         return (id , nume, varsta)
     
     def add_for_test(self):
-        pass
+        self.serviceStudenti.reset_list()
+        self.serviceStudenti.adauga_student(1 , "Tudor", 19)
+        self.serviceStudenti.adauga_student(2 , "Dragos", 19)
+        self.serviceStudenti.adauga_student(3 , "Adi", 19)
+        self.serviceStudenti.adauga_student(4 , "Guta", 19)
+        self.serviceStudenti.adauga_student(5 , "Gaboru", 19)
+        self.serviceStudenti.adauga_student(6 , "Sonia", 19)
+        self.serviceStudenti.adauga_student(7 , "Stef", 19)
+        self.serviceStudenti.adauga_student(8 , "Misu", 19)
+        self.serviceStudenti.adauga_student(9 , "Pecichi", 19)
+        self.serviceStudenti.adauga_student(10 , "Ali", 19)
+        
+        self.serviceDiscipline.reset_list()
+        self.serviceDiscipline.adauga_disciplina(1 , "Mate", "Stefan")
+        self.serviceDiscipline.adauga_disciplina(2 , "Info", "Daniela")
+        
+        self.serviceNote.reset_list()
+        self.serviceNote.adauga_nota(1 , 10, 1 , 1)
+        self.serviceNote.adauga_nota(2 , 9 , 1 , 2)
+        self.serviceNote.adauga_nota(3 , 10 , 1 , 2)
+        
+        self.serviceNote.adauga_nota(4 , 9, 2 , 1)
+        self.serviceNote.adauga_nota(5 , 9, 2 , 2)
+        self.serviceNote.adauga_nota(6 , 7, 2 , 2)
+        
+        self.serviceNote.adauga_nota(7 , 8, 3 , 1)
+        self.serviceNote.adauga_nota(8 , 9, 3 , 2)
+        self.serviceNote.adauga_nota(9 , 6, 3 , 2)
+        
+        self.serviceNote.adauga_nota(10 , 8, 4 , 2)
+        self.serviceNote.adauga_nota(11, 10, 4 , 2)
+        self.serviceNote.adauga_nota(12 , 10, 4 , 2)
+        
+        self.serviceNote.adauga_nota(13 , 6, 5 , 2)
+        self.serviceNote.adauga_nota(14, 8, 5 , 2)
+        self.serviceNote.adauga_nota(15, 7, 5 , 2)
+        
+        self.serviceNote.adauga_nota(16, 5, 6 , 1)
+        self.serviceNote.adauga_nota(17, 7, 6 , 2)
+        
+        self.serviceNote.adauga_nota(18, 10, 7 , 1)
+        self.serviceNote.adauga_nota(19, 7, 7 , 2)
+        
+        self.serviceNote.adauga_nota(20, 9, 8 , 1)
+        self.serviceNote.adauga_nota(21, 8, 8 , 2)
+        
+        self.serviceNote.adauga_nota(22, 7, 9 , 1)
+        self.serviceNote.adauga_nota(23, 7, 9 , 2)
+        
+        self.serviceNote.adauga_nota(24, 5, 10 , 1)
+        self.serviceNote.adauga_nota(25, 6, 10 , 2)
+        
     
     def citeste_nota(self):
         """
@@ -126,6 +177,8 @@ class Console:
                 
                 if args[0] == "exit":
                     running = False
+                elif args[0] == "testval":
+                    self.add_for_test()
                 elif args[0] == "help":
                     print("Commands list:\n" + 
                         "exit\n" + 
@@ -302,20 +355,27 @@ class Console:
                                 argumente = args[2]
                                 lista = self.serviceNote.filtrare_nume_nota(argumente)
                                 for e in lista:
-                                    print(f"{e.getStudent.getNume()} : {e.getValoare()}")
+                                    print(f"{e.getStudent().getNume()} : {e.getValoare()}")
                             except:
                                 print("Invalid disciplina")
-                    elif args[1] == "20":
+                    elif args[1] == "nota":
                         if len(args) <= 2:
                             print("You forgot to specify the criteria")
                         else:
                             try:
                                 argumente = args[2]
-                                lista = self.serviceNote.filtrare_20()
+                                lista = self.serviceNote.filtrare_nota_nume(argumente)
                                 for e in lista:
-                                    print(f"{e[0]} : {e[1]:.2f}")
+                                    print(f"{e.getStudent().getNume()} : {e.getValoare()}")
                             except:
                                 print("Invalid disciplina")
+                    elif args[1] == "20":
+                        try:
+                            lista = self.serviceNote.filtrare_20()
+                            for e in lista:
+                                print(f"{e[0]} : {e[1]:.2f}")
+                        except:
+                            print("Invalid disciplina")
                     
                 else:
                     print("Invalid command")

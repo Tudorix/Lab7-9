@@ -28,6 +28,7 @@ class ServiceNote:
     def filtrare_nume_nota(self, disciplina):
         """
             Functie care sorteaza studentii dupa Nume si Nota
+            raise - ValueError
         """
         lista = self.get_note()
         lista_filt = []
@@ -41,7 +42,7 @@ class ServiceNote:
         if lenght == 0:
             raise ValueError
         
-        #filtarre dupa nume
+        #filtarre dupa nume -> nota
         for i in range(0 ,lenght - 1):
             for j in range(i , lenght):
                 if lista_filt[i].getStudent().getNume() > lista_filt[j].getStudent().getNume():
@@ -49,12 +50,41 @@ class ServiceNote:
                 elif lista_filt[i].getStudent().getNume() == lista_filt[j].getStudent().getNume():
                     if lista_filt[i].getValoare() < lista_filt[j].getValoare():
                         lista_filt[i] , lista_filt[j] = lista_filt[j] , lista_filt[i]
-            
+        
+        return lista_filt
+    
+    def filtrare_nota_nume(self, disciplina):
+        """
+            Functie care sorteaza studentii dupa Nota si Nume
+            raise - ValueError
+        """
+        lista = self.get_note()
+        lista_filt = []
+        
+        #verificare disciplina
+        for i in range(0 ,self.__repoNota.lenght()):
+            if lista[i].getDisciplina().getNume() == disciplina:
+                lista_filt.append(lista[i])
+        
+        lenght = len(lista_filt)
+        if lenght == 0:
+            raise ValueError
+        
+        #filtarre dupa nota -> nume
+        for i in range(0 ,lenght - 1):
+            for j in range(i , lenght):
+                if lista_filt[i].getValoare() < lista_filt[j].getValoare():
+                    lista_filt[i] , lista_filt[j] = lista_filt[j] , lista_filt[i]
+                elif lista_filt[i].getValoare() == lista_filt[j].getValoare():
+                    if lista_filt[i].getStudent().getNume() > lista_filt[j].getStudent().getNume():
+                        lista_filt[i] , lista_filt[j] = lista_filt[j] , lista_filt[i]
+        
         return lista_filt
     
     def filtrare_20(self):
         """
             Functie care sorteaza studentii dupa media notelor
+            raise - ValueError
         """
         lista_note = self.get_note()
         lista_studenti = self.__repoStud.getList()
