@@ -373,7 +373,7 @@ class Console:
                         try:
                             lista = self.serviceNote.filtrare_20()
                             for e in lista:
-                                print(f"{e[0]} : {e[1]:.2f}")
+                                print(e)
                         except:
                             print("Invalid disciplina")
                     

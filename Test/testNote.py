@@ -122,7 +122,7 @@ class TestNote:
         
         lista = self.serviceNote.filtrare_20()
         
-        assert lista[0][0] == "Tudor"
+        assert lista[0].getNume() == "Tudor"
         assert not len(lista) == 2
             
     

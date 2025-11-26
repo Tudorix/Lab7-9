@@ -1,4 +1,5 @@
 from Domain.nota import Nota
+from Domain.sefPromotieDTO import SefPromotieDTO
 import math
 class ServiceNote:
     
@@ -81,16 +82,17 @@ class ServiceNote:
         
         return lista_filt
     
-    def filtrare_20(self):
+    def __listaMedii(self , lista_studenti , lista_note):
         """
-            Functie care sorteaza studentii dupa media notelor
-            raise - ValueError
-        """
-        lista_note = self.get_note()
-        lista_studenti = self.__repoStud.getList()
+        Functie care returneaza lista de 
         
+        :param self: Description
+        :param lista_studenti: Description
+        :param lista_note: Description
+        :return: Description
+        :rtype: NoReturn
+        """
         lista_medii = []
-        
         for e in lista_studenti:
             suma = 0.0
             nr = 0
@@ -101,7 +103,21 @@ class ServiceNote:
             
             if suma != 0:
                 suma /= nr
-                lista_medii.append((e.getNume() , suma))
+                sef_promotie = SefPromotieDTO(suma , e.getNume() )
+                lista_medii.append(sef_promotie)
+                
+        return lista_medii
+    
+    def filtrare_20(self):
+        """
+            Functie care sorteaza studentii dupa media notelor
+            
+            :return lista cu 20% studenti cu cele mai mari medii
+        """
+        lista_note = self.get_note()
+        lista_studenti = self.__repoStud.getList()
+        
+        lista_medii = self.__listaMedii(lista_studenti , lista_note)
         
         lenght = len(lista_medii)
         percent = math.floor(20/100 * lenght)
@@ -109,7 +125,7 @@ class ServiceNote:
         #filtarre dupa medie
         for i in range(lenght - 1):
             for j in range(lenght):
-                if lista_medii[i][1] > lista_medii[j][1]:
+                if lista_medii[i].getMedie() > lista_medii[j].getMedie():
                     aux = lista_medii[i]
                     lista_medii[i] = lista_medii[j]
                     lista_medii[j] = aux
