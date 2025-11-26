@@ -84,7 +84,7 @@ class ServiceNote:
     
     def __listaMedii(self , lista_studenti , lista_note):
         """
-        Functie care returneaza lista de 
+        Functie care returneaza lista de SefPromotieDTO
         
         :param self: Description
         :param lista_studenti: Description
@@ -152,6 +152,16 @@ class ServiceNote:
             raise Exception
         
         self.__repoNota.adauga_nota(nota)
+        
+    def sterge_toate_notele(self , list_id):
+        """
+            Functie care sterge toate notele cu IDurile din list_id
+
+        Args:
+            list_id (list): lista cu idurile 
+        """
+        for i in list_id:
+            self.sterge_nota(i)
         
     def sterge_nota(self, ID):
         """

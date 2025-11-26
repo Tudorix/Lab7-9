@@ -85,6 +85,35 @@ class ServiceStudent:
             Functie care reseteaza lista de studenti
         """
         self.__repoStudent.rst()
+        
+        
+    def filt_varsta(self , varsta):
+        """
+        Functie care filtreaza studentii peste o anumita varsta
+        
+        :param varsta: int
+        
+        Raises:
+            ValueError: daca varsta nu e un numar
+
+        Returns:
+            list : studentii care au varsta mai mare
+        """
+        
+        try:
+            self.__validatorStudent.validareVarsta(varsta)
+        except:
+            raise Exception
+        
+        lista_studenti = self.get_studenti()
+        lista_filt = []
+        
+        for student in lista_studenti:
+            if student.getVarsta() <= varsta:
+                lista_filt.append(student)
+                
+        return lista_filt
+        
     
     def adauga_student(self , idStudent, Nume, Varsta):
         """

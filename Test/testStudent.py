@@ -68,6 +68,21 @@ class TestStudent:
         self.serviceStudenti.gen_studenti(12)
         assert self.serviceStudenti.lenght() == 60
 
+    def test_filt_varsta(self):
+        """ 
+            Functie de test pentru filt_varsta
+        """
+        self.serviceStudenti.reset_list()
+        self.serviceStudenti.adauga_student(48 , "Tudor", 19)
+        self.serviceStudenti.adauga_student(56 , "Andrei", 23)
+        self.serviceStudenti.adauga_student(32 , "Stefan", 18)
+        
+        lista = self.serviceStudenti.filt_varsta(20)
+        
+        assert lista[0].getNume() == "Tudor"
+        assert lista[0].getVarsta() == 19
+        assert lista[1].getVarsta() == 18
+        assert len(lista) == 2
 
     def test_all(self):
         """ 
@@ -78,3 +93,4 @@ class TestStudent:
         self.test_stergere_student()
         self.test_cauta_student()
         self.test_gen_random()
+        self.test_filt_varsta()

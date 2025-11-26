@@ -40,16 +40,16 @@ class Console:
     
     def add_for_test(self):
         self.serviceStudenti.reset_list()
-        self.serviceStudenti.adauga_student(1 , "Tudor", 19)
-        self.serviceStudenti.adauga_student(2 , "Dragos", 19)
-        self.serviceStudenti.adauga_student(3 , "Adi", 19)
-        self.serviceStudenti.adauga_student(4 , "Guta", 19)
-        self.serviceStudenti.adauga_student(5 , "Gaboru", 19)
-        self.serviceStudenti.adauga_student(6 , "Sonia", 19)
-        self.serviceStudenti.adauga_student(7 , "Stef", 19)
+        self.serviceStudenti.adauga_student(1 , "Tudor", 20)
+        self.serviceStudenti.adauga_student(2 , "Dragos", 23)
+        self.serviceStudenti.adauga_student(3 , "Adi", 18)
+        self.serviceStudenti.adauga_student(4 , "Guta", 17)
+        self.serviceStudenti.adauga_student(5 , "Gaboru", 21)
+        self.serviceStudenti.adauga_student(6 , "Sonia", 22)
+        self.serviceStudenti.adauga_student(7 , "Stef", 21)
         self.serviceStudenti.adauga_student(8 , "Misu", 19)
-        self.serviceStudenti.adauga_student(9 , "Pecichi", 19)
-        self.serviceStudenti.adauga_student(10 , "Ali", 19)
+        self.serviceStudenti.adauga_student(9 , "Pecichi", 24)
+        self.serviceStudenti.adauga_student(10 , "Ali", 18)
         
         self.serviceDiscipline.reset_list()
         self.serviceDiscipline.adauga_disciplina(1 , "Mate", "Stefan")
@@ -171,7 +171,7 @@ class Console:
         running = True
         
         while running:
-            try:
+            #try:
                 com = input("Enter a command:\n>>>")
                 args = com.strip().split()
                 
@@ -249,6 +249,20 @@ class Console:
                             print("You forgot to specify the student ID")
                         else:
                             try:
+                                lista_note = self.serviceNote.get_note()
+                                try:
+                                    id = int(args[2])
+                                except:
+                                    raise MemoryError
+                                
+                                lista_id = []
+                                
+                                for e in lista_note:
+                                    if e.getStudent().getID() == id:
+                                        lista_id.append(e.getID())
+                                        
+                                self.serviceNote.sterge_toate_notele(lista_id)
+                                
                                 self.serviceStudenti.sterge_student(args[2])
                                 print("Student deleted successfully")
                             except MemoryError:
@@ -262,6 +276,20 @@ class Console:
                             print("You forgot to specify the disciplina ID")
                         else:
                             try:
+                                lista_note = self.serviceNote.get_note()
+                                try:
+                                    id = int(args[2])
+                                except:
+                                    raise MemoryError
+                                
+                                lista_id = []
+                                
+                                for e in lista_note:
+                                    if e.getDisciplina().getID() == id:
+                                        lista_id.append(e.getID())
+                                        
+                                self.serviceNote.sterge_toate_notele(lista_id)
+                                
                                 self.serviceDiscipline.sterge_disciplina(args[2])
                                 print("Disciplina deleted successfully")
                             except MemoryError:
@@ -369,6 +397,17 @@ class Console:
                                     print(f"{e.getStudent().getNume()} : {e.getValoare()}")
                             except:
                                 print("Invalid disciplina")
+                    elif args[1] == "varsta":
+                        if len(args) <= 2:
+                            print("You forgot to specify the varsta")
+                        else:
+                            try:
+                                argumente = args[2]
+                                lista = self.serviceStudenti.filt_varsta(argumente)
+                                for e in lista:
+                                    print(e)
+                            except ValueError:
+                                print("Invalid varsta")
                     elif args[1] == "20":
                         try:
                             lista = self.serviceNote.filtrare_20()
@@ -379,5 +418,5 @@ class Console:
                     
                 else:
                     print("Invalid command")
-            except Exception:
-                print ("Invalid command")
+            #except Exception:
+            #    print ("Invalid command")

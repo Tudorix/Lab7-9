@@ -1,3 +1,3 @@
 # Lab7-9
-- Documentatie pentru I3
+- De facut ce e la lab 10
 
