@@ -16,8 +16,11 @@ from Test.testStudent import TestStudent
 from Test.testDisciplina import TestDiscipline
 from Test.testNote import TestNote
 
-stud_repo_test = StudentRepo()
-disc_repo_test = DisciplineRepo()
+studentTestPath = r"/home/tudorix/UBB/FP/7_9lab/Test/fisiereTest/studentTest.txt"
+disciplinaTestPath = r"/home/tudorix/UBB/FP/7_9lab/Test/fisiereTest/disciplinaTest.txt"
+
+stud_repo_test = StudentRepo(studentTestPath)
+disc_repo_test = DisciplineRepo(disciplinaTestPath)
 note_repo_test = NoteRepo()
 
 stud_valid_test = ValidatorStudent()
@@ -42,8 +45,11 @@ note_test.test_all()
 #Clear the screen
 print("\033c", end="")
 
-stud_repo = StudentRepo()
-disc_repo = DisciplineRepo()
+studentPath = r"/home/tudorix/UBB/FP/7_9lab/fisiere/students.txt"
+disciplinaPath = r"/home/tudorix/UBB/FP/7_9lab/fisiere/discipline.txt"
+
+stud_repo = StudentRepo(studentPath)
+disc_repo = DisciplineRepo(disciplinaPath)
 note_repo = NoteRepo()
 
 stud_valid = ValidatorStudent()

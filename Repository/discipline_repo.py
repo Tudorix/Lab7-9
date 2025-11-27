@@ -1,9 +1,12 @@
+from Domain.disciplina import Disciplina
 class DisciplineRepo:
-    def __init__(self):
+    def __init__(self , fileName):
         """
             Constructorul clasei DisciplineRepo
         """
         self.__lista_discipline = []
+        self.__fileName = fileName
+        self.load_from_file()
         
     def getList(self):
         """ 
@@ -48,6 +51,7 @@ class DisciplineRepo:
             raise IndexError
         else:
             self.__lista_discipline.append(disciplina)
+            self.load_in_file()
         
     def sterge_disciplina(self, ID):
         """
@@ -58,6 +62,7 @@ class DisciplineRepo:
         for i in range(len(self.__lista_discipline)):
             if self.__lista_discipline[i].getID() == int(ID):
                 del self.__lista_discipline[i]
+                self.load_in_file()
                 return
         raise MemoryError
         
@@ -76,8 +81,28 @@ class DisciplineRepo:
             for i in range(len(self.__lista_discipline)):
                 if self.__lista_discipline[i].getID() == int(ID):
                     self.__lista_discipline[i] = disciplina
+                    self.load_in_file()
                     return
                 
             raise MemoryError
         
+    def load_from_file(self):
+        with open(self.__fileName , "r") as f:
+            #reset list
+            self.rst()
+            #take info
+            lines = f.readlines()
+            for l in lines:
+                parts = l.split(",")
+                #Take info
+                ID = int(parts[0])
+                Nume = parts[1]
+                Profesor = parts[2]
+                disciplina = Disciplina(ID , Nume , Profesor)
+                self.adauga_disciplina(disciplina)
+    
+    def load_in_file(self):
+        with open(self.__fileName , "w") as f:
+            for i in self.__lista_discipline:
+                f.write(f"{i.getID()},{i.getNume()},{i.getProfesor()}\n")
 

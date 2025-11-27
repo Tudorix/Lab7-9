@@ -171,7 +171,7 @@ class Console:
         running = True
         
         while running:
-            #try:
+            try:
                 com = input("Enter a command:\n>>>")
                 args = com.strip().split()
                 
@@ -418,5 +418,5 @@ class Console:
                     
                 else:
                     print("Invalid command")
-            #except Exception:
-            #    print ("Invalid command")
+            except Exception:
+                print ("Invalid command")

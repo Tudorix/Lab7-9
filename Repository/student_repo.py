@@ -1,16 +1,19 @@
+from Domain.student import Student
 class StudentRepo:
-    def __init__(self):
+    def __init__(self , fileName):
         """
             Constructorul clasei StudentRepo
         """
         self.__lista_studenti = []
+        self.__fileName = fileName
+        self.load_from_file()
         
     def getList(self):
         """ 
             Functie care returneaza lista de studenti
         """
         return self.__lista_studenti
-    
+
     def lenght(self):
         """ 
             Functie care returneaza lungimea lista de studenti
@@ -54,6 +57,7 @@ class StudentRepo:
             raise IndexError
         else:
             self.__lista_studenti.append(student)
+            self.load_in_file()
             
     def sterge_student(self , ID):
         """
@@ -64,6 +68,7 @@ class StudentRepo:
         for i in range(len(self.__lista_studenti)):
             if self.__lista_studenti[i].getID() == int(ID):
                 del self.__lista_studenti[i]
+                self.load_in_file()
                 return
                 
         raise MemoryError
@@ -81,6 +86,27 @@ class StudentRepo:
             for i in range(len(self.__lista_studenti)):
                 if self.__lista_studenti[i].getID() == int(ID):
                     self.__lista_studenti[i] = student
+                    self.load_in_file()
                     return
                     
             raise MemoryError
+        
+    def load_from_file(self):
+        with open(self.__fileName,"r") as f:
+            #reset the list
+            self.rst()
+            #preluare informatii pe linii
+            lines = f.readlines()
+            for l in lines:
+                parts = l.split(",")
+                #Preluare informatii
+                ID = int(parts[0])
+                Nume = parts[1]
+                Varsta = int(parts[2])
+                student = Student(ID , Nume , Varsta)
+                self.adauga_student(student)
+        
+    def load_in_file(self):
+        with open(self.__fileName , "w") as f:
+            for i in self.__lista_studenti:
+                f.writelines(f"{i.getID()},{i.getNume()},{i.getVarsta()}\n")
