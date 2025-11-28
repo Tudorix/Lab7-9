@@ -1,4 +1,5 @@
 from Domain.nota import Nota
+from Domain.nota_dto import NotaDTO
 from Domain.sefPromotieDTO import SefPromotieDTO
 import math
 class ServiceNote:
@@ -20,11 +21,30 @@ class ServiceNote:
         """
         self.__repoNota.rst()
         
+    def __construiesteNota(self, nota_dto):
+        """
+        Functie care construieste o Nota din NotaDTO
+        
+        :param nota_dto: NotaDTO
+        :rtype: Nota
+        """
+        idNota = nota_dto.getID()
+        Valoare = nota_dto.getValoare()
+        Student = self.__repoStud.get_by_id(nota_dto.getIdStudent())
+        Disciplina = self.__repoDisc.get_by_id(nota_dto.getIdDisciplina())
+        nota = Nota(Student,Disciplina,Valoare,idNota)
+        return nota
+        
     def get_note(self):
         """ 
             Functie care returneza lista curenta de note
         """
-        return self.__repoNota.get_note()
+        note_dtos = self.__repoNota.get_note()
+        note = []
+        for nota_dto in note_dtos:
+            nota = self.__construiesteNota(nota_dto)
+            note.append(nota)
+        return note
     
     def filtrare_nume_nota(self, disciplina):
         """
@@ -150,6 +170,8 @@ class ServiceNote:
             self.__validatorNota.validareNota(nota)
         except:
             raise Exception
+        
+        nota = NotaDTO(ID , Valoare , Student.getID() , Disciplina.getID())
         
         self.__repoNota.adauga_nota(nota)
         

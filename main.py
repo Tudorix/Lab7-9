@@ -18,10 +18,11 @@ from Test.testNote import TestNote
 
 studentTestPath = r"/home/tudorix/UBB/FP/7_9lab/Test/fisiereTest/studentTest.txt"
 disciplinaTestPath = r"/home/tudorix/UBB/FP/7_9lab/Test/fisiereTest/disciplinaTest.txt"
+notaTestPath = r"/home/tudorix/UBB/FP/7_9lab/Test/fisiereTest/noteTest.txt"
 
 stud_repo_test = StudentRepo(studentTestPath)
 disc_repo_test = DisciplineRepo(disciplinaTestPath)
-note_repo_test = NoteRepo()
+note_repo_test = NoteRepo(notaTestPath)
 
 stud_valid_test = ValidatorStudent()
 disc_valid_test = ValidatorDiscipline()
@@ -47,10 +48,11 @@ print("\033c", end="")
 
 studentPath = r"/home/tudorix/UBB/FP/7_9lab/fisiere/students.txt"
 disciplinaPath = r"/home/tudorix/UBB/FP/7_9lab/fisiere/discipline.txt"
+notaPath = r"/home/tudorix/UBB/FP/7_9lab/fisiere/note.txt"
 
 stud_repo = StudentRepo(studentPath)
 disc_repo = DisciplineRepo(disciplinaPath)
-note_repo = NoteRepo()
+note_repo = NoteRepo(notaPath)
 
 stud_valid = ValidatorStudent()
 disc_valid = ValidatorDiscipline()

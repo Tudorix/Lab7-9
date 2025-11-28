@@ -12,6 +12,7 @@ class StudentRepo:
         """ 
             Functie care returneaza lista de studenti
         """
+        self.load_from_file()
         return self.__lista_studenti
 
     def lenght(self):
@@ -25,6 +26,7 @@ class StudentRepo:
             Functie care reseteaza lista de studenti
         """
         self.__lista_studenti = []
+        self.load_in_file()
         
     def exista_ID(self, ID):
         """
@@ -92,9 +94,12 @@ class StudentRepo:
             raise MemoryError
         
     def load_from_file(self):
+        """  
+            Functie care incarca informatii din fisier
+        """
         with open(self.__fileName,"r") as f:
             #reset the list
-            self.rst()
+            self.__lista_studenti.clear()
             #preluare informatii pe linii
             lines = f.readlines()
             for l in lines:
@@ -104,9 +109,12 @@ class StudentRepo:
                 Nume = parts[1]
                 Varsta = int(parts[2])
                 student = Student(ID , Nume , Varsta)
-                self.adauga_student(student)
+                self.__lista_studenti.append(student)
         
     def load_in_file(self):
+        """  
+            Functie care incarca informatii in fisier
+        """
         with open(self.__fileName , "w") as f:
             for i in self.__lista_studenti:
                 f.writelines(f"{i.getID()},{i.getNume()},{i.getVarsta()}\n")

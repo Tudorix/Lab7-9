@@ -12,6 +12,7 @@ class DisciplineRepo:
         """ 
             Functie care returneaza lista de discipline
         """
+        #self.load_from_file()
         return self.__lista_discipline
         
     def rst(self):
@@ -19,6 +20,7 @@ class DisciplineRepo:
             Functie care reseteaza lista de discipline
         """
         self.__lista_discipline = []
+        self.load_in_file()
         
     def get_by_id(self, ID):
         """
@@ -52,6 +54,7 @@ class DisciplineRepo:
         else:
             self.__lista_discipline.append(disciplina)
             self.load_in_file()
+            
         
     def sterge_disciplina(self, ID):
         """
@@ -87,9 +90,12 @@ class DisciplineRepo:
             raise MemoryError
         
     def load_from_file(self):
+        """  
+            Functie care incarca informatii din fisier
+        """
         with open(self.__fileName , "r") as f:
             #reset list
-            self.rst()
+            self.__lista_discipline.clear()
             #take info
             lines = f.readlines()
             for l in lines:
@@ -99,9 +105,12 @@ class DisciplineRepo:
                 Nume = parts[1]
                 Profesor = parts[2]
                 disciplina = Disciplina(ID , Nume , Profesor)
-                self.adauga_disciplina(disciplina)
+                self.__lista_discipline.append(disciplina)
     
     def load_in_file(self):
+        """  
+            Functie care incarca informatii in fisier
+        """
         with open(self.__fileName , "w") as f:
             for i in self.__lista_discipline:
                 f.write(f"{i.getID()},{i.getNume()},{i.getProfesor()}\n")
